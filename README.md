@@ -1,50 +1,130 @@
-# Welcome to your Expo app 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## Get started
+# 🐱 KittyTrack Frontend
 
-1. Install dependencies
+A **React Native (Expo)** mobile app for KittyTrack—a group expense tracking application with smart LLM input support.
 
-   ```bash
-   npm install
-   ```
+-----
 
-2. Start the app
+## 🚀 Features
 
-   ```bash
-   npx expo start
-   ```
+  * **Group Management**: Easily create and view shared expense groups.
+  * **Expense Tracking**: Keep tabs on expenses and how they're split among members.
+  * **LLM-Powered Input**: Add expenses using natural language, parsed intelligently by the backend.
+  * **Simplified Debt Calculation**: Quickly see who owes what to whom.
+  * **Modern Navigation**: Built with **Expo Router** and **React Navigation**.
 
-In the output, you'll find options to open the app in a
+-----
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 📦 Tech Stack
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+  * **React Native** (via **Expo**)
+  * **Expo Router** (File-based navigation for a streamlined development experience)
+  * **Axios**: For efficient communication with the KittyTrack backend API.
+  * **React Native Paper**: Provides beautiful and customizable UI components.
 
-## Get a fresh project
+-----
 
-When you're ready, run:
+## 🗂️ Project Structure
 
-```bash
-npm run reset-project
+```
+app/
+├── (tabs)/             # Defines the tab layout and routes
+│   ├── index.tsx       # Home tab (lists groups)
+│   ├── group.tsx       # Group detail screen
+│   ├── add-expense.tsx # Manual expense entry screen
+│   ├── llm.tsx         # Smart input (LLM) screen
+│   └── profile.tsx     # User profile screen
+├── screens/            # Implementations of individual screens
+│   ├── HomeScreen.tsx
+│   ├── GroupScreen.tsx
+│   ├── AddExpenseScreen.tsx
+│   ├── LLMInputScreen.tsx
+│   └── ProfileScreen.tsx
+├── services/           # API communication setup
+│   └── api.ts
+├── _layout.tsx         # Root layout for Expo Router
+└── +not-found.tsx      # 404 fallback screen
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+-----
 
-## Learn more
+## 🧰 Prerequisites
 
-To learn more about developing your project with Expo, look at the following resources:
+Make sure you have **Node.js** and **npm** installed. Then, install the Expo CLI globally:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npm install -g expo-cli
+```
 
-## Join the community
+-----
 
-Join our community of developers creating universal apps.
+## 🧪 Run the App
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+To start the development server, navigate to the project directory and run:
+
+```bash
+npx expo start
+```
+
+You'll then have options to run the app:
+
+  * **iOS Simulator**: Press `i` in the terminal.
+  * **Android Emulator**: Press `a` in the terminal.
+  * **Real Device**: Scan the QR code displayed in the terminal using the **Expo Go** app on your phone.
+  * **Web**: Press `w` to open in your web browser.
+
+-----
+
+## 🌐 API Setup
+
+Before running the app, you'll need to configure the backend API URL. Edit `app/services/api.ts` and replace the `baseURL` with your machine's local IP address where the backend is running:
+
+```typescript
+const api = axios.create({
+  baseURL: 'http://192.168.0.X:3000', // Replace with your machine's IP (e.g., 192.168.1.100)
+});
+```
+
+**Important**: When testing on a real device, **do not** use `localhost`; always use your machine's actual local IP address.
+
+-----
+
+## 🧠 Smart Input (LLM)
+
+Navigate to the **Smart Input** tab within the app and try entering a natural language prompt like this:
+
+```
+"John paid €50 for dinner with Alice and Bob"
+```
+
+The backend's LLM will process this and return a structured expense payload, ready to be added to your group.
+
+-----
+
+## 🧪 Web Testing
+
+If you prefer to test the app in a web browser, use:
+
+```bash
+npx expo start --web
+```
+
+**Note**: For web requests to succeed, you might need to ensure CORS is properly enabled on your backend server.
+
+-----
+
+## 🗺️ Roadmap
+
+Here are some features planned for future development:
+
+  * Login/Authentication (JWT)
+  * Push Notifications
+  * Offline Support
+  * Dark Mode
+
+-----
+
+## 📄 License
+
+This project is licensed under the **MIT License**. Built with ❤️ to make group expenses painless\!
